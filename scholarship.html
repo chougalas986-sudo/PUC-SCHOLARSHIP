@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scholarship Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h1 id="name"></h1>
+  <p id="eligibility"></p>
+  <p id="benefits"></p>
+  <p id="documents"></p>
+  <p id="deadline"></p>
+  <a id="link" class="button" target="_blank">Official Website</a>
+</div>
+
+<br>
+<a href="scholarships.html">Back to Scholarship List</a>
+
+<!-- Include data.js first -->
+<script src="data.js"></script>
+
+<!-- Script to load scholarship details dynamically -->
+<script>
+  // Get scholarship ID from URL
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+
+  // Fetch the scholarship data from data.js
+  const s = scholarships[id];
+
+  if (s) {
+    document.getElementById("name").innerText = s.name;
+    document.getElementById("eligibility").innerText = "Eligibility: " + s.eligibility;
+    document.getElementById("benefits").innerText = "Benefits: " + s.benefits;
+    document.getElementById("documents").innerText = "Required Documents: " + s.documents;
+    document.getElementById("deadline").innerText = "Deadline: " + s.deadline;
+    document.getElementById("link").href = s.link;
+    document.getElementById("link").innerText = "Official Website";
+  } else {
+    document.getElementById("name").innerText = "Scholarship Not Found!";
+    document.getElementById("eligibility").innerText = "";
+    document.getElementById("benefits").innerText = "";
+    document.getElementById("documents").innerText = "";
+    document.getElementById("deadline").innerText = "";
+    document.getElementById("link").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
